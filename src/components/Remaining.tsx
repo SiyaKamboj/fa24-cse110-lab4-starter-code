@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 
 const Remaining = () => {
   const { expenses } = useContext(AppContext);
-  let budget = 1000;
+  const { budget, setBudget } = useContext(AppContext);
 
   const totalExpenses = expenses.reduce((total, item) => {
     return (total = total + item.cost);
@@ -14,6 +14,7 @@ const Remaining = () => {
   // Exercise: Create an alert when Remaining is less than 0.
   useEffect(() => {
     if (totalExpenses > budget) {
+      console.log("budget is " + budget);
       window.alert("You have exceeded your budget :((");
     }
   }, [totalExpenses, budget]);
